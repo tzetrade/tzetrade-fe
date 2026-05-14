@@ -1,0 +1,403 @@
+/* ============================================================
+   TZETRADE — Dark Trading Terminal Theme
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── Theme tokens — light defaults, dark overrides ─────────── */
+:root {
+  --dash-bg:       #f0f2f5;
+  --card-bg:       #ffffff;
+  --card-border:   #e2e8f0;
+  --card-shadow:   0 1px 4px rgba(0,0,0,.06);
+  --header-bg:     rgba(255,255,255,0.97);
+  --header-border: #e8ecf0;
+  --text-primary:  #0f172a;
+  --text-sec:      #475569;
+  --text-muted:    #94a3b8;
+  --text-dim:      #b0bec5;
+  --label:         #64748b;
+  --divider:       #f1f5f9;
+  --input-bg:      #f8fafc;
+  --input-border:  #e2e8f0;
+  --row-hover:     rgba(0,201,160,.04);
+  --row-border:    #f1f5f9;
+  --btn-bg:        #f8fafc;
+  --btn-border:    #e2e8f0;
+  --btn-color:     #64748b;
+  --total-bg:      #f8fafc;
+  --tx-tag-bg:     #f1f5f9;
+  --tx-hash:       #94a3b8;
+}
+
+html.dark {
+  --dash-bg:       #080c14;
+  --card-bg:       #0f1623;
+  --card-border:   #182336;
+  --card-shadow:   0 2px 20px rgba(0,0,0,.55);
+  --header-bg:     rgba(8,12,20,0.97);
+  --header-border: #0f1825;
+  --text-primary:  #d8eaff;
+  --text-sec:      #8ea8c8;
+  --text-muted:    #3a5070;
+  --text-dim:      #1e3050;
+  --label:         #253648;
+  --divider:       #0f1825;
+  --input-bg:      #0a1120;
+  --input-border:  #182336;
+  --row-hover:     rgba(0,201,160,.025);
+  --row-border:    #0a1220;
+  --btn-bg:        #0a1120;
+  --btn-border:    #182336;
+  --btn-color:     #253648;
+  --total-bg:      #0a1120;
+  --tx-tag-bg:     #0a1120;
+  --tx-hash:       #2e4060;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body  { display: block !important; }
+#app  { max-width: unset; margin: 0; padding: 0; display: block; }
+
+/* ── Dark base ─────────────────────────────────────────────── */
+html.dark,
+html.dark body {
+  background: #080c14;
+  color: #b8ccec;
+  color-scheme: dark;
+}
+
+/* Ambient glow — subtle depth behind content */
+html.dark body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 5%  -5%,  rgba(0, 201, 160, 0.055) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 95% 105%, rgba(90,  70, 220, 0.035) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+html.dark #app { position: relative; z-index: 1; }
+
+/* ── Card ──────────────────────────────────────────────────── */
+html.dark .p-card {
+  background:    #0f1623 !important;
+  border:        1px solid #182336 !important;
+  border-radius: 12px !important;
+  box-shadow:    0 2px 20px rgba(0,0,0,.55) !important;
+  color:         #b8ccec !important;
+}
+html.dark .p-card-body    { padding: 0 !important; }
+html.dark .p-card-header  { padding: 20px 20px 0 !important; }
+html.dark .p-card-content { padding: 20px !important; }
+html.dark .p-card-footer  { padding: 0 20px 20px !important; }
+
+html.dark .p-card-title {
+  font-size:      0.65rem !important;
+  font-weight:    700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color:          #2e4060 !important;
+  margin-bottom:  2px !important;
+}
+html.dark .p-card-subtitle {
+  font-size:     0.7rem !important;
+  color:         #1e3050 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Menubar ───────────────────────────────────────────────── */
+html.dark .p-menubar {
+  background:    rgba(8, 12, 20, 0.96) !important;
+  backdrop-filter: blur(18px) !important;
+  border:        none !important;
+  border-bottom: 1px solid #0f1825 !important;
+  border-radius: 0 !important;
+  padding:       0 24px !important;
+  min-height:    52px !important;
+}
+html.dark .p-menubar-root-list { display: none !important; }
+
+/* ── InputText ─────────────────────────────────────────────── */
+html.dark .p-inputtext {
+  background:    #0a1120 !important;
+  border:        1px solid #182336 !important;
+  color:         #d8eaff !important;
+  border-radius: 8px !important;
+  font-size:     0.82rem !important;
+  transition:    border-color 0.15s, box-shadow 0.15s !important;
+}
+html.dark .p-inputtext::placeholder { color: #243248 !important; }
+html.dark .p-inputtext:hover  { border-color: #26395a !important; }
+html.dark .p-inputtext:focus  {
+  border-color: #00c9a0 !important;
+  box-shadow:   0 0 0 3px rgba(0,201,160,.12) !important;
+  outline:      none !important;
+}
+
+/* ── Button ────────────────────────────────────────────────── */
+html.dark .p-button {
+  border-radius: 8px !important;
+  font-weight:   700 !important;
+  font-size:     0.75rem !important;
+  letter-spacing:0.05em !important;
+  transition:    all 0.15s !important;
+}
+html.dark .p-button-primary {
+  background:   #00c9a0 !important;
+  border-color: #00c9a0 !important;
+  color:        #060a10 !important;
+}
+html.dark .p-button-primary:hover:not(:disabled) {
+  background:   #00af8d !important;
+  border-color: #00af8d !important;
+  box-shadow:   0 0 18px rgba(0,201,160,.28) !important;
+}
+html.dark .p-button-primary:focus {
+  box-shadow: 0 0 0 3px rgba(0,201,160,.22) !important;
+}
+html.dark .p-button-text {
+  background:   transparent !important;
+  border-color: transparent !important;
+  color:        #3a5070 !important;
+}
+html.dark .p-button-text:hover {
+  color:      #00c9a0 !important;
+  background: rgba(0,201,160,.07) !important;
+}
+
+/* ── DataTable ─────────────────────────────────────────────── */
+html.dark .p-datatable-table-container { border: none !important; border-radius: 0 !important; }
+
+html.dark .p-datatable-thead > tr > th {
+  background:    #080e1a !important;
+  border:        none !important;
+  border-bottom: 1px solid #0f1a28 !important;
+  color:         #253648 !important;
+  font-size:     0.62rem !important;
+  font-weight:   700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:0.12em !important;
+  padding:       10px 16px !important;
+}
+html.dark .p-datatable-tbody > tr {
+  background:  transparent !important;
+  border:      none !important;
+  transition:  background 0.1s !important;
+}
+html.dark .p-datatable-tbody > tr:hover {
+  background: rgba(0,201,160,.025) !important;
+}
+html.dark .p-datatable-tbody > tr > td {
+  border:      none !important;
+  border-bottom: 1px solid #0c1520 !important;
+  padding:     11px 16px !important;
+  color:       #8ea8c8 !important;
+  font-size:   0.82rem !important;
+}
+html.dark .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background: rgba(15,22,35,.5) !important;
+}
+html.dark .p-datatable-empty-message td {
+  text-align: center !important;
+  padding:    40px 16px !important;
+  color:      #1e2e44 !important;
+  font-size:  0.8rem !important;
+}
+
+/* ── Tag ───────────────────────────────────────────────────── */
+html.dark .p-tag {
+  border-radius:  5px !important;
+  font-size:      0.62rem !important;
+  font-weight:    800 !important;
+  letter-spacing: 0.09em !important;
+  padding:        3px 7px !important;
+}
+html.dark .p-tag-success {
+  background: rgba(34,197,94,.1) !important;
+  color:      #22c55e !important;
+  border:     1px solid rgba(34,197,94,.16) !important;
+}
+html.dark .p-tag-danger {
+  background: rgba(248,113,113,.1) !important;
+  color:      #f87171 !important;
+  border:     1px solid rgba(248,113,113,.16) !important;
+}
+html.dark .p-tag-info {
+  background: rgba(129,140,248,.1) !important;
+  color:      #818cf8 !important;
+  border:     1px solid rgba(129,140,248,.16) !important;
+}
+html.dark .p-tag-warn {
+  background: rgba(250,204,21,.1) !important;
+  color:      #facc15 !important;
+  border:     1px solid rgba(250,204,21,.16) !important;
+}
+
+/* ── ProgressBar ───────────────────────────────────────────── */
+html.dark .p-progressbar {
+  background:    #0e1a28 !important;
+  border-radius: 3px !important;
+  overflow:      hidden !important;
+}
+html.dark .p-progressbar .p-progressbar-value {
+  border-radius: 3px !important;
+  background:    #00c9a0 !important;
+  transition:    width .4s ease !important;
+}
+html.dark .p-progressbar .p-progressbar-label { font-size: 0 !important; }
+
+/* ── SelectButton ──────────────────────────────────────────── */
+html.dark .p-selectbutton {
+  gap:        4px !important;
+  background: transparent !important;
+  border:     none !important;
+  padding:    0 !important;
+}
+html.dark .p-selectbutton .p-button,
+html.dark .p-selectbutton .p-togglebutton {
+  background:    #0a1120 !important;
+  border:        1px solid #182336 !important;
+  color:         #2e4060 !important;
+  border-radius: 7px !important;
+  padding:       7px 15px !important;
+  font-size:     0.72rem !important;
+  font-weight:   700 !important;
+  letter-spacing:0.06em !important;
+  transition:    all 0.15s !important;
+}
+html.dark .p-selectbutton .p-button:hover {
+  background:   #0e1828 !important;
+  border-color: #253648 !important;
+  color:        #7090b0 !important;
+}
+html.dark .p-selectbutton .p-button.p-button-active,
+html.dark .p-selectbutton .p-button[aria-checked="true"],
+html.dark .p-selectbutton .p-button[aria-pressed="true"] {
+  background:   rgba(0,201,160,.1) !important;
+  border-color: #00c9a0 !important;
+  color:        #00c9a0 !important;
+}
+
+/* ── Select (Dropdown) ─────────────────────────────────────── */
+html.dark .p-select {
+  background:    #0a1120 !important;
+  border:        1px solid #182336 !important;
+  border-radius: 8px !important;
+}
+html.dark .p-select:hover  { border-color: #26395a !important; }
+html.dark .p-select.p-focus {
+  border-color: #00c9a0 !important;
+  box-shadow:   0 0 0 3px rgba(0,201,160,.12) !important;
+}
+html.dark .p-select-label {
+  color:     #d8eaff !important;
+  font-size: 0.82rem !important;
+}
+html.dark .p-select-dropdown { color: #3a5070 !important; }
+html.dark .p-select-overlay {
+  background:    #0f1623 !important;
+  border:        1px solid #182336 !important;
+  border-radius: 8px !important;
+  box-shadow:    0 12px 48px rgba(0,0,0,.75) !important;
+}
+html.dark .p-select-option {
+  color:     #8ea8c8 !important;
+  padding:   8px 14px !important;
+  font-size: 0.82rem !important;
+}
+html.dark .p-select-option:hover,
+html.dark .p-select-option.p-focus   { background: rgba(0,201,160,.07) !important; color: #00c9a0 !important; }
+html.dark .p-select-option.p-selected { background: rgba(0,201,160,.12) !important; color: #00c9a0 !important; }
+
+/* ── InputNumber ───────────────────────────────────────────── */
+html.dark .p-inputnumber .p-inputtext {
+  background:    #0a1120 !important;
+  border:        1px solid #182336 !important;
+  color:         #d8eaff !important;
+  border-radius: 8px !important;
+}
+html.dark .p-inputnumber .p-inputtext:hover { border-color: #26395a !important; }
+html.dark .p-inputnumber .p-inputtext:focus {
+  border-color: #00c9a0 !important;
+  box-shadow:   0 0 0 3px rgba(0,201,160,.12) !important;
+}
+html.dark .p-inputnumber-button-group .p-button {
+  background:   #101c2a !important;
+  border-color: #182336 !important;
+  color:        #3a5070 !important;
+}
+html.dark .p-inputnumber-button-group .p-button:hover {
+  background: #182436 !important;
+  color:      #d8eaff !important;
+}
+
+/* ── Tabs ──────────────────────────────────────────────────── */
+html.dark .p-tabs             { background: transparent !important; }
+html.dark .p-tablist          { background: transparent !important; border-bottom: 1px solid #0f1825 !important; }
+html.dark .p-tablist-tab-list { background: transparent !important; gap: 2px !important; }
+html.dark .p-tab {
+  background:     transparent !important;
+  border:         none !important;
+  border-bottom:  2px solid transparent !important;
+  color:          #253648 !important;
+  font-size:      0.72rem !important;
+  font-weight:    700 !important;
+  letter-spacing: 0.06em !important;
+  padding:        10px 18px !important;
+  margin-bottom:  -1px !important;
+  transition:     color 0.15s !important;
+}
+html.dark .p-tab:hover          { color: #4a6888 !important; }
+html.dark .p-tab.p-tab-active   { color: #00c9a0 !important; border-bottom-color: #00c9a0 !important; }
+html.dark .p-tabpanels          { background: transparent !important; padding: 20px 0 0 !important; }
+html.dark .p-tabpanel           { background: transparent !important; color: #b8ccec !important; }
+
+/* ── Toast ─────────────────────────────────────────────────── */
+html.dark .p-toast .p-toast-message {
+  background:    #0f1623 !important;
+  border:        1px solid #182336 !important;
+  border-radius: 10px !important;
+  box-shadow:    0 8px 40px rgba(0,0,0,.7) !important;
+  color:         #b8ccec !important;
+}
+html.dark .p-toast .p-toast-message.p-toast-message-success { border-left: 3px solid #22c55e !important; }
+html.dark .p-toast .p-toast-message.p-toast-message-error   { border-left: 3px solid #f87171 !important; }
+html.dark .p-toast .p-toast-summary { color: #d8eaff !important; font-weight: 700 !important; }
+html.dark .p-toast .p-toast-detail  { color: #6080a0 !important; font-size: 0.78rem !important; }
+html.dark .p-toast .p-toast-close-button { color: #3a5070 !important; }
+
+/* ── Message ───────────────────────────────────────────────── */
+html.dark .p-message {
+  border-radius: 8px !important;
+  padding:       10px 16px !important;
+}
+html.dark .p-message.p-message-warn {
+  background: rgba(250,204,21,.05) !important;
+  border:     1px solid rgba(250,204,21,.18) !important;
+  color:      #facc15 !important;
+}
+html.dark .p-message .p-message-text { font-size: 0.8rem !important; }
+
+/* ── ProgressSpinner ───────────────────────────────────────── */
+html.dark .p-progress-spinner-circle { stroke: #00c9a0 !important; }
+
+/* ── Avatar ────────────────────────────────────────────────── */
+html.dark .p-avatar { font-weight: 800 !important; font-size: 0.62rem !important; }
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+html.dark ::-webkit-scrollbar             { width: 5px; height: 5px; }
+html.dark ::-webkit-scrollbar-track       { background: #080c14; }
+html.dark ::-webkit-scrollbar-thumb       { background: #182336; border-radius: 4px; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #26395a; }
+
+/* ── Utility ───────────────────────────────────────────────── */
+.p-datatable-tbody > tr { cursor: pointer; }
